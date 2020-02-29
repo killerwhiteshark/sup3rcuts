@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Routes from './components/Routes';
 import Navbar from './components/NavBar';
 
-import Firebase from './components/Firebase'
+import firebase from './components/Firebase'
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -14,10 +14,10 @@ const App = () => {
   }
 
   useEffect(() => {
-    Firebase.auth.onAuthStateChanged(authUser => {
+    firebase.auth.onAuthStateChanged(authUser => {
       //if user is Auth, search users DB for usernames tied to user.uid
       if(authUser) {
-        Firebase.db.collection('users').doc(authUser.uid)
+        firebase.db.collection('users').doc(authUser.uid)
         .get()
         .then(querySnapshot => {
           //set currentUser to {userName: userName from DB}

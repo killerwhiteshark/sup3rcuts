@@ -20,17 +20,39 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.user = {
+      email: '',
+      uid: '',
+      userName: '',
+    }
   }
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password)
 
   doSignInWithEmailAndPassword = async (email, password) =>{
-    debugger
-      this.auth.signInWithEmailAndPassword(email, password)
-      .then(user => {console.log(user); debugger})
-      .catch(error => {console.log(error); debugger; return false})
+      await this.auth.signInWithEmailAndPassword(email, password)
+      .then(() => { return true})
+      .catch((err) => { throw Error;})
   }
+
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
+  
+  doAuthStateChanged = async () => {
+    return this.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.db.collection('users').doc(user.uid)
+        .get()
+        .then(querySnapshot => {
+        this.user.userName = querySnapshot.data().userName
+      })
+        this.user.email = user.email;
+        this.user.uid = user.uid;
+        return true;
+      } else {
+        return false;
+      }      
+  })
+};
 
   doSignOut = () => {this.auth.signOut(); return <Redirect exact to='/'/> }
 }
