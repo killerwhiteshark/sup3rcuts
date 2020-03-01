@@ -6,7 +6,7 @@ import Firebase from '../../components/Firebase'
 const Announcements = (props) => {
     const [input, setInput] = useState({});
     const user = Firebase.auth.currentUser;
-
+    const [madePost, setMadePost] = useState(false)
     useEffect(() => {
         Firebase.doAuthStateChanged()
     })
@@ -19,22 +19,24 @@ const Announcements = (props) => {
             ...input, [e.target.name]: e.target.value,
         })
     }
-
     const handleFormSubmit = async e => {
         const { content } = input;
         e.preventDefault()
         try {
-            debugger
             await Firebase.db.collection('announcements').add({
-                'date': new TimeStamp.now(),
-                'uid': user.uid,
-                'content': content
-            }).then(()=> <Redirect to='/' />)
+                timestamp: Firebase.time,
+                uid: user.uid,
+                content: content,
+                date: new Date().toDateString(),
+            });
+            setMadePost(true)
         } catch (error) {
-            debugger
             console.log('failed to db collection',error);
             throw Error;
         }
+    }
+    if(madePost){
+        return <Redirect to='/' />
     }
     return (
     <div>

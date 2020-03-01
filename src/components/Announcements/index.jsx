@@ -3,9 +3,11 @@ import Firebase from '../Firebase';
 
 const AnnounceList = () => {
     const [allAnnoun, setAnnoun] = useState([]);
+    const [secondList, setSecond] = useState([]);
     useEffect(() => {
         Firebase.db
         .collection('announcements')
+        .orderBy("timestamp", 'desc')
         .onSnapshot((snapShot) => {
             const announce = snapShot.docs.map((ann) => ({
                 id: ann.id,
@@ -15,11 +17,11 @@ const AnnounceList = () => {
         })
     }, []);
     return <div>
-        {allAnnoun.map((doc) => 
-            <li key={doc.id}>
-                {doc.content} at {doc.date}
-            </li>
-        )}
+        <ol>
+        {allAnnoun.map((doc) =>
+            <li key={doc.id}>{doc.content} - {doc.uid}</li> 
+        )}    
+        </ol>
     </div>
 }
 

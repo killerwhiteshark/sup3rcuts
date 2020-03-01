@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import Firebase from '../../components/Firebase'
 
-const Login = (props) => {
+const Login = ({isLoggedIn}) => {
   const [inputs, setInputs] = useState({})
   const [isAuth, setAuth] = useState(false);
   const [noUser, setNoUser] = useState(false)
+
+  useEffect(()=>{
+    if(isLoggedIn){
+      setAuth(true)
+    }
+  },[])
 
   const handleChange = e => {
     setInputs({
@@ -26,7 +32,7 @@ const Login = (props) => {
         ()=>setNoUser(false), 3000)
   }
 }
-    const { email, password} = inputs
+    const { email, password } = inputs
     if (isAuth) {
       return <Redirect to='/' />
     }

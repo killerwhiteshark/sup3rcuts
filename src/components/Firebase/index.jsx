@@ -20,6 +20,7 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.time = app.firestore.FieldValue.serverTimestamp()
     this.user = false;
   }
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -47,7 +48,7 @@ class Firebase {
       })
         return true;
       } else {
-        return false, Error;
+        return false;
       }      
   })
 };
