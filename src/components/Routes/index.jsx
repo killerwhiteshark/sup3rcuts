@@ -16,7 +16,7 @@ export default ({ isLoggedIn, user, doSetCurrentUser }) => (
     <Route
       exact
       path='/login'
-      render={() => <Login  isLoggedIn={isLoggedIn} doSetCurrentUser={doSetCurrentUser}/>}
+      render={() => <Login  doSetCurrentUser={doSetCurrentUser}/>}
     />
     <Route
     exact

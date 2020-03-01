@@ -20,11 +20,7 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.db = app.firestore();
-    this.user = {
-      email: '',
-      uid: '',
-      userName: '',
-    }
+    this.user = false;
   }
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password)
@@ -43,13 +39,15 @@ class Firebase {
         this.db.collection('users').doc(user.uid)
         .get()
         .then(querySnapshot => {
-        this.user.userName = querySnapshot.data().userName
+        this.user = {
+          userName: querySnapshot.data().userName,
+          email: user.email,
+          uid: user.uid
+        }
       })
-        this.user.email = user.email;
-        this.user.uid = user.uid;
         return true;
       } else {
-        return false;
+        return false, Error;
       }      
   })
 };

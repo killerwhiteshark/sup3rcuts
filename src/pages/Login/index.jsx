@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import Firebase from '../../components/Firebase'
 
-const Login = ({ isLoggedIn, doSetCurrentUser }) => {
+const Login = (props) => {
   const [inputs, setInputs] = useState({})
-  const [isAuth, setAuth] = useState(isLoggedIn);
+  const [isAuth, setAuth] = useState(false);
   const [noUser, setNoUser] = useState(false)
 
   const handleChange = e => {
@@ -19,10 +19,7 @@ const Login = ({ isLoggedIn, doSetCurrentUser }) => {
       await Firebase.doSignInWithEmailAndPassword(email, password)
       .then(()=>{return})
       .catch((err) => { console.log(err); setNoUser(true); throw Error});
-      doSetCurrentUser({
-          email,
-        })
-        setAuth(true);
+      setAuth(true);
     } catch (error) {
       setNoUser(true)
       setTimeout(
