@@ -18,18 +18,21 @@ const SignUp = (props) => {
         const { email, passwordOne, userName} = inputs;
         e.preventDefault()
         try {
-            await Firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
+            await Firebase.doCreateUserWithEmailAndPassword(email, passwordOne, userName)
             props.doSetCurrentUser({
                 email,
             })
-            try {
-                Firebase.db.collection('users').doc(user.uid).set({
-                    'userName': userName
-                })
-            } catch (error) {
-               console.log('failed to db collection',error) 
-            }
             setIsAuth(true);
+        } catch (error) {
+            setError(error)
+            setTimeout(() => {
+                setError(null);
+            }, 3000)
+        }
+        try {
+            await Firebase.db.collection('users').doc(Firebase.auth.currentUser.uid).set({
+                userName: userName
+              });
         } catch (error) {
             setError(error)
             setTimeout(() => {

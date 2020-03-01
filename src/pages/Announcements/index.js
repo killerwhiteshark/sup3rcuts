@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Firebase from '../../components/Firebase'
 
 
-const Announcements = (props) => {
+const Announcements = ({currentUser}) => {
     const [input, setInput] = useState({});
     const user = Firebase.auth.currentUser;
     const [madePost, setMadePost] = useState(false)
@@ -26,6 +26,7 @@ const Announcements = (props) => {
             await Firebase.db.collection('announcements').add({
                 timestamp: Firebase.time,
                 uid: user.uid,
+                userName: currentUser.userName,
                 content: content,
                 date: new Date().toDateString(),
             });

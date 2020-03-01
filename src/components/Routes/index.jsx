@@ -16,12 +16,12 @@ export default ({ isLoggedIn, user, doSetCurrentUser }) => (
     <Route
       exact
       path='/login'
-      render={() => <Login  doSetCurrentUser={doSetCurrentUser}/>}
+      render={() => <Login  isLoggedIn={isLoggedIn} doSetCurrentUser={doSetCurrentUser}/>}
     />
     <Route
     exact
     path='/make-announcement'
-    render={() => <Announcements />}
+    render={() => <Announcements currentUser={user}/>}
     />
     <Route
       exact

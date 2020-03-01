@@ -23,7 +23,7 @@ const Login = ({isLoggedIn}) => {
     e.preventDefault()
     try {
       await Firebase.doSignInWithEmailAndPassword(email, password)
-      .then(()=>{return})
+      .then(()=>{debugger; return})
       .catch((err) => { console.log(err); setNoUser(true); throw Error});
       setAuth(true);
     } catch (error) {
@@ -32,10 +32,12 @@ const Login = ({isLoggedIn}) => {
         ()=>setNoUser(false), 3000)
   }
 }
+
     const { email, password } = inputs
     if (isAuth) {
       return <Redirect to='/' />
     }
+
     return (
       <>
           <h1>Login</h1>

@@ -19,9 +19,9 @@ const App = () => {
       if(authUser) {
         Firebase.db.collection('users').doc(authUser.uid)
         .get()
-        .then(querySnapshot => {
+        .then(async (querySnapshot)=> {
           //set currentUser to {userName: userName from DB}
-          doSetCurrentUser({userName: querySnapshot.data().userName})
+          await doSetCurrentUser({userName: querySnapshot.data().userName, uid: authUser.uid})
           setIsLoggedIn(true)
         })
       }

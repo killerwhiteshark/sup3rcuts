@@ -23,37 +23,52 @@ class Firebase {
     this.time = app.firestore.FieldValue.serverTimestamp()
     this.user = false;
   }
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password)
+  doCreateUserWithEmailAndPassword = async (email, password) => {
+    await this.auth.createUserWithEmailAndPassword(email, password)
 
-  doSignInWithEmailAndPassword = async (email, password) =>{
-      await this.auth.signInWithEmailAndPassword(email, password)
-      .then(() => { return true})
-      .catch((err) => { throw Error;})
+  }
+
+  doSignInWithEmailAndPassword = async (email, password, userName) => {
+    await this.auth.signInWithEmailAndPassword(email, password)
+    return true
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
-  
+
   doAuthStateChanged = async () => {
     return this.auth.onAuthStateChanged(user => {
       if (user) {
         this.db.collection('users').doc(user.uid)
-        .get()
-        .then(querySnapshot => {
-        this.user = {
-          userName: querySnapshot.data().userName,
-          email: user.email,
-          uid: user.uid
-        }
-      })
+          .get()
+          .then(querySnapshot => {
+            this.user = {
+              userName: querySnapshot.data().userName,
+              email: user.email,
+              uid: user.uid
+            }
+          })
         return true;
       } else {
         return false;
-      }      
-  })
-};
+      }
+    })
+  };
 
-  doSignOut = () => {this.auth.signOut(); return <Redirect exact to='/'/> }
+  doSignOut = () => { this.auth.signOut(); return <Redirect exact to='/' /> };
+
+  doDeletePost = async (post) => {
+    await this.db.collection("announcements").doc(post).delete()
+      .then(() => { return })
+      .catch((error) => {
+        ErrorEvent(error)
+      });
+  };
+
+  doUpdatepost = async (post) => {
+    this.db.collection('announcements').doc(post.id).update(post)
+    .then(() => {return true})
+    .catch(() => {return false});
+  }
 }
 
 const firebase = new Firebase()

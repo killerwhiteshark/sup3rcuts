@@ -7,7 +7,7 @@ const Home = ({ isLoggedIn, user}) => {
         <h4>
             {(isLoggedIn) ? (
                 `${user.userName} is logged in`,
-                <AnnounceList />
+                <AnnounceList currentUser={user} />
             ) : (
                 'No User is signed in'
             )}
