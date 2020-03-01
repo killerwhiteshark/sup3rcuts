@@ -17,11 +17,12 @@ const AnnounceList = () => {
         })
     }, []);
     return <div>
-        <ol>
+        <h3>Current Announcements!</h3>
+        <ul>
         {allAnnoun.map((doc) =>
-            <li key={doc.id}>{doc.content} - {doc.uid}</li> 
+            <li key={doc.id}>{doc.content} - User {doc.uid} {doc.date}</li> 
         )}    
-        </ol>
+        </ul>
     </div>
 }
 
