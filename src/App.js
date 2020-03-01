@@ -39,9 +39,6 @@ const App = () => {
       </div>
       <footer>
         <p>Sup3rcuts est. 2015-2020</p>
-        <script src="/__/firebase/7.9.2/firebase-app.js"></script>
-        <script src="/__/firebase/7.9.2/firebase-analytics.js"></script>
-        <script src="/__/firebase/init.js"></script>
       </footer>
     </div>
   );

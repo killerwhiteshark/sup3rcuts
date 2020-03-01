@@ -25,7 +25,9 @@ const Announcements = (props) => {
         e.preventDefault()
         try {
             debugger
-            await Firebase.db.collection('announcements').doc(user.uid).set({
+            await Firebase.db.collection('announcements').add({
+                'date': new TimeStamp.now(),
+                'uid': user.uid,
                 'content': content
             }).then(()=> <Redirect to='/' />)
         } catch (error) {
