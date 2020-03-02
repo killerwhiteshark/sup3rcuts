@@ -1,16 +1,13 @@
 import React from 'react';
-import AnnounceList from '../../components/Announcements';
+import AnnounceList from '../../components/Announcements'
+
 const Home = ({ isLoggedIn, user}) => {
 
     return <div>
         <h1> This is the home page</h1>
         <h4>
-            {(isLoggedIn) ? (
-                `${user.userName} is logged in`,
-                <AnnounceList currentUser={user} />
-            ) : (
-                'No User is signed in'
-            )}
+            {user.userName} is logged in,
+            <AnnounceList />
         </h4>
         </div>
 }

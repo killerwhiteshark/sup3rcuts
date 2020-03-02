@@ -19,9 +19,9 @@ const App = () => {
       if(authUser) {
         Firebase.db.collection('users').doc(authUser.uid)
         .get()
-        .then(async (querySnapshot)=> {
+        .then((querySnapshot)=> {
           //set currentUser to {userName: userName from DB}
-          await doSetCurrentUser({userName: querySnapshot.data().userName, uid: authUser.uid})
+          doSetCurrentUser({userName: querySnapshot.data().userName, uid: authUser.uid})
           setIsLoggedIn(true)
         })
       }
@@ -33,7 +33,7 @@ const App = () => {
       <header >
         <h1>Sup3rcuts!</h1>
       </header>
-      <Navbar user={currentUser} doSetCurrentUser={doSetCurrentUser} isLoggedIn={isLoggedIn} setCurrentUser={setCurrentUser} />
+      {(isLoggedIn) ? (<Navbar user={currentUser} doSetCurrentUser={doSetCurrentUser} isLoggedIn={isLoggedIn} setCurrentUser={setCurrentUser} />): ''}
       <div>
         <Routes user={currentUser} isLoggedIn={isLoggedIn} doSetCurrentUser={doSetCurrentUser}/>
       </div>

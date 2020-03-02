@@ -18,7 +18,7 @@ const NavBar = ({ isLoggedIn, user, doSetCurrentUser }) => {
     }
     return (
         <nav>
-            <NavLink exact to='/'>Home</NavLink>
+            <NavLink exact to='/main'>Home</NavLink>
             {(isLoggedIn)? (
                 <span style={{ margin: 10 }}>
                     <h3 style={{display: 'inline'}}>Welcome back warrior! -  {user.userName}</h3>

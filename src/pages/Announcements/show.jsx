@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { Redirect } from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import Firebase from '../../components/Firebase'
 
-const ShowAnnounce = (props) => {
-    const [announce, setAnnouce] = useState({username: '', content: ''});
-    const [input, setInput] = useState({});
+import AnnounceCommentForm from '../../components/Announcements/AnnounceComments'
 
+const ShowAnnounce = (props) => {
+    const [announce, setAnnouce] = useState({});
     useEffect(() => {
         const announceId = props.match.params.id;
         Firebase.getAnnouceById(announceId)
@@ -18,6 +18,8 @@ const ShowAnnounce = (props) => {
             <h2>{announce.userName}</h2>
             <h4 className='title'>Announcement</h4>
             <p>{announce.content}</p>
+            {(Firebase.auth.currentUser.uid === announce.uid) ? (<Link exact to={`/announce/edit/${announce.uid}`}>Edit Announcement</Link>): ('')}
+            <AnnounceCommentForm />
         </div>
     )
 }
