@@ -5,6 +5,7 @@ import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
 import Announcements from '../../pages/Announcements';
+import ShowAnnounce from '../../pages/Announcements/show';
 // import PasswordForgetForm from '../../pages/PasswordForget';
 
 export default ({ isLoggedIn, user, doSetCurrentUser }) => (
@@ -12,7 +13,8 @@ export default ({ isLoggedIn, user, doSetCurrentUser }) => (
     <Route
       exact 
       path='/'
-      render={() => <Home  user={user} isLoggedIn={isLoggedIn}/>}/>
+      render={() => <Home  user={user} isLoggedIn={isLoggedIn}/>}
+      />
     <Route
       exact
       path='/login'
@@ -27,6 +29,11 @@ export default ({ isLoggedIn, user, doSetCurrentUser }) => (
       exact
       path='/signup'
       render={() => <Signup doSetCurrentUser={doSetCurrentUser}/>}
+    />
+    <Route 
+    exact
+    path='/announce/:id'
+    component={ShowAnnounce}
     />
   </Switch>
 )

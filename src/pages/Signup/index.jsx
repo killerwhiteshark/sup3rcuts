@@ -7,7 +7,6 @@ const SignUp = (props) => {
     const [isAuth, setIsAuth] = useState(false);
     const [error, setError] = useState(null);
     const [inputs, setInputs] = useState({});
-    const user = Firebase.auth.currentUser;
     const handleChange = e => {
         setInputs({
             ...inputs, [e.target.name]: e.target.value,

@@ -1,31 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom'
 import Firebase from '../../components/Firebase'
-
+import '../../App.css'
 
 const Announcements = ({currentUser}) => {
     const [input, setInput] = useState({});
-    const user = Firebase.auth.currentUser;
     const [madePost, setMadePost] = useState(false)
+
     useEffect(() => {
         Firebase.doAuthStateChanged()
-    })
-    if (!Firebase.auth.currentUser) {
-       return <Redirect to='/login'/>
-    };
+    }, [])
 
     const handleChange = e => {
         setInput({
             ...input, [e.target.name]: e.target.value,
         })
     }
-    const handleFormSubmit = async e => {
+    const handleFormSubmit = e => {
         const { content } = input;
         e.preventDefault()
         try {
-            await Firebase.db.collection('announcements').add({
+            Firebase.db.collection('announcements').add({
                 timestamp: Firebase.time,
-                uid: user.uid,
+                uid: Firebase.user.uid,
                 userName: currentUser.userName,
                 content: content,
                 date: new Date().toDateString(),

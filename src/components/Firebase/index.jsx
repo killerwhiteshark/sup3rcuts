@@ -25,7 +25,6 @@ class Firebase {
   }
   doCreateUserWithEmailAndPassword = async (email, password) => {
     await this.auth.createUserWithEmailAndPassword(email, password)
-
   }
 
   doSignInWithEmailAndPassword = async (email, password, userName) => {
@@ -36,25 +35,34 @@ class Firebase {
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
   doAuthStateChanged = async () => {
-    return this.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.db.collection('users').doc(user.uid)
-          .get()
-          .then(querySnapshot => {
-            this.user = {
-              userName: querySnapshot.data().userName,
-              email: user.email,
-              uid: user.uid
-            }
-          })
-        return true;
-      } else {
-        return false;
-      }
-    })
-  };
+    try {
+      this.auth.onAuthStateChanged(
+        async user => {
+          if (user) {
+            await this.db.collection('users').doc(user.uid)
+              .get()
+              .then(querySnapshot => {
+                this.user = {
+                  userName: querySnapshot.data().userName,
+                  email: user.email,
+                  uid: user.uid,
+                  logIn: true
+                }
+              })
+              }
+            })
+          return true; 
+      } catch (error) {
+      return false;    
+    }
+};
 
-  doSignOut = () => { this.auth.signOut(); return <Redirect exact to='/' /> };
+  doSignOut = () => {
+    this.user = {
+      logIn: false,
+    }
+    this.auth.signOut();
+    return <Redirect exact to='/' /> };
 
   doDeletePost = async (post) => {
     await this.db.collection("announcements").doc(post).delete()
@@ -68,6 +76,19 @@ class Firebase {
     this.db.collection('announcements').doc(post.id).update(post)
     .then(() => {return true})
     .catch(() => {return false});
+  }
+
+  getAnnouceById = async (announceId) => {
+    try {
+      const docRef = this.db.collection('announcements').doc(announceId)
+      const data = await docRef.get()
+      if(data.exists) {
+        return data.data()
+      }
+    } catch (error) {
+      console.log(error)
+      return error
+    }
   }
 }
 
