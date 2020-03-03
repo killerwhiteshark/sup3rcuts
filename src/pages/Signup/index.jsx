@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import Firebase from '../../components/Firebase'
 
@@ -87,6 +87,9 @@ const SignUp = (props) => {
         </button>
             </form>
             {error && <div style={{ color: 'red' }}>{error.message}</div>}
+            <div>
+            <h4>Already have an account? <Link exact to='/login'>Login</Link></h4>
+            </div>
         </div>
     )
 }

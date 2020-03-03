@@ -61,11 +61,12 @@ class Firebase {
   };
 
   doDeletePost = async (post) => {
-    await this.db.collection("announcements").doc(post).delete()
-      .then(() => { return })
-      .catch((error) => {
-        ErrorEvent(error)
-      });
+    try {
+      this.db.collection("announcements").doc(post).delete()
+    } catch (error) {
+        console.log(error)
+        return error
+      }
   };
 
   doUpdatepost = async (post) => {

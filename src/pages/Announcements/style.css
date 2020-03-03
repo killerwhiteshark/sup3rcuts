@@ -1,0 +1,9 @@
+.danger {
+    color:white;
+    background-color: tomato;
+}
+
+.warning {
+    padding: 3px;
+    max-width: fit-content;
+}

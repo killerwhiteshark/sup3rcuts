@@ -17,14 +17,15 @@ const Announcements = ({currentUser}) => {
         })
     }
     const handleFormSubmit = e => {
-        const { content } = input;
+        const { content, title} = input;
         e.preventDefault()
         try {
             Firebase.db.collection('announcements').add({
                 timestamp: Firebase.time,
                 uid: Firebase.user.uid,
                 userName: currentUser.userName,
-                content: content,
+                content,
+                title,
                 date: new Date().toDateString(),
             });
             setMadePost(true)
@@ -34,12 +35,18 @@ const Announcements = ({currentUser}) => {
         }
     }
     if(madePost){
-        return <Redirect to='/' />
+        return <Redirect to='/main' />
     }
     return (
     <div>
-        <h1> This is the Make Announcements page</h1>
+        <h1>Make an Announcement</h1>
         <form onSubmit={handleFormSubmit}>
+            <input 
+            type='text'
+            placeholder="Title"
+            name="title"
+            onChange={handleChange}
+            />
             <input 
             type="text" 
             placeholder="Make Announcment"

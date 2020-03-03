@@ -5,13 +5,6 @@ import {Link} from 'react-router-dom';
 const AnnounceList = () => {
     const [allAnnoun, setAnnoun] = useState([]);
     
-    const handleDelete = (e) => {
-        e.preventDefault()
-        Firebase.doDeletePost(e.target.post.value)
-        .then(()=>{console.log('Deleted!')})
-        .catch(()=>{console.log('Failed to delete')})
-    }
-    
     useEffect(() => {
     Firebase.db
             .collection('announcements')
@@ -29,7 +22,7 @@ const AnnounceList = () => {
             <h3>Current Announcements!</h3>
             <ul>
                 {allAnnoun.map((doc, idx) => {
-                return <li key={doc.id}>UserName: {doc.userName} - {doc.content} - Date {doc.date} <Link to={`/announce/${doc.id}`}>See Announcement</Link> </li>
+                return <li className="card-panel red darken-4" key={doc.id}>By: {doc.userName} - <Link to={`/announce/${doc.id}`}>{doc.title}</Link> - Date {doc.date}</li>
                 })}
             </ul>
         </div>)

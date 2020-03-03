@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import Firebase from '../../components/Firebase'
+import { Link, Redirect } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Login = () => {
   const [inputs, setInputs] = useState({})
-  const [isAuth, setAuth] = useState(false)
   const [noUser, setNoUser] = useState(false)
-
+  const [loggedIn, setLog] = useState(false)
+  useEffect(()=>{
+    setLog(Firebase.user.logIn);
+  }, [])
   const handleChange = e => {
     setInputs({
       ...inputs, [e.target.name]: e.target.value
@@ -16,8 +20,9 @@ const Login = () => {
     e.preventDefault()
     try {
       await Firebase.doSignInWithEmailAndPassword(email, password)
-        .then(() => { setAuth(Firebase.user.logIn);})
+        .then(() => { return })
         .catch((err) => { console.log(err); setNoUser(true); throw Error });
+        setLog(true);
     } catch (error) {
       setNoUser(true)
       setTimeout(
@@ -25,6 +30,9 @@ const Login = () => {
     }
   }
 
+if(loggedIn){
+  return <Redirect to='/main'/>
+}
   const { email, password } = inputs
   return (
     <>
@@ -46,6 +54,9 @@ const Login = () => {
         <button type='submit'>Login</button>
       </form>
       {(noUser) ? (<h4 style={{ color: 'red' }}>User Email/Password Invalid or Email does not exist</h4>) : ('')}
+      <div>
+        <h4>No account? Sign Up! <Link exact to='/signup'>Sign Up</Link></h4>
+      </div>
     </>
   )
 }

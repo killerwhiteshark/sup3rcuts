@@ -6,19 +6,19 @@ import AnnounceCommentForm from '../../components/Announcements/AnnounceComments
 
 const ShowAnnounce = (props) => {
     const [announce, setAnnouce] = useState({});
+    const announceId = props.match.params.id;
     useEffect(() => {
-        const announceId = props.match.params.id;
         Firebase.getAnnouceById(announceId)
             .then(snapShot => setAnnouce(snapShot))
-        }, []);
+        }, [props.match.params.id]);
 
     return(
         <div>
-            <h3>this is the show page!</h3>
-            <h2>{announce.userName}</h2>
             <h4 className='title'>Announcement</h4>
-            <p>{announce.content}</p>
-            {(Firebase.auth.currentUser.uid === announce.uid) ? (<Link exact to={`/announce/edit/${announce.uid}`}>Edit Announcement</Link>): ('')}
+            <h2>{announce.userName}</h2>
+            <h3>Title: {announce.title}</h3>
+            <p>Announcement: {announce.content}</p>
+            {(Firebase.auth.currentUser.uid === announce.uid) ? (<><i class="material-icons left">build</i><Link to={`/announce/edit/${announceId}`}>Edit Announcement</Link></>): ('')}
             <AnnounceCommentForm />
         </div>
     )
