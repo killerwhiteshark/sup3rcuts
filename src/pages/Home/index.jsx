@@ -3,11 +3,11 @@ import AnnounceList from '../../components/Announcements'
 
 const Home = () => {
 
-    return <div>
-        <h4>
-            <AnnounceList />
-        </h4>
-        </div>
+    return(
+            <div style={{height: '100vw'}}className="container">
+                <AnnounceList />
+            </div>
+    )
 }
 
 export default Home

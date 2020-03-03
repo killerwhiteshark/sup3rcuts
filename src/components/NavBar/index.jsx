@@ -17,26 +17,23 @@ const NavBar = ({ isLoggedIn, user, doSetCurrentUser }) => {
         }
     }
     return (
-        <>
-            <div className=" red darken-4">
-                <ul id="side-nav">
-                    <li><NavLink exact to='/main'>Home</NavLink></li>
-                    <li className='brand-logo'>{user.userName}</li>
-                    <li><NavLink
-                        exact
-                        to='/login'
-                        left='false'
-                        children='Logout'
-                        onClick={logoutUser}
-                        style={{ cursor: 'pointer', marginLeft: '15px' }}
-                    /></li>
-                    <li><NavLink
-                    to='/make-announcement'
-                    children='Make Announcement'
-                    /></li>
-                </ul>
-            </div>
-        </>
+        <div>
+            <ul id="side-nav">
+            <li className='brand-logo'>{user.userName}</li>
+                <NavLink exact to='/main'>Home</NavLink>
+                <NavLink
+                    exact
+                    to='/login'
+                    left='false'
+                    children='Logout'
+                    onClick={logoutUser}
+                />
+                <NavLink
+                to='/make-announcement'
+                children='Make Announcement'
+                />
+            </ul>
+        </div>
     )
 }
 

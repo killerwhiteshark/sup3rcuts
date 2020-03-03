@@ -18,7 +18,7 @@ const AnnounceList = () => {
             });
     }, []);
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection:'column'}} className='container'>
             <h3>Current Announcements!</h3>
             <ul>
                 {allAnnoun.map((doc, idx) => {

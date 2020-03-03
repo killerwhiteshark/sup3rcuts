@@ -55,11 +55,15 @@ const EditAnnounce = (props) => {
             <h1>Edit/Delete Announcement</h1>
             <form onSubmit={handleSubmit}>
                 <input type="text" name='content' value={announce.content} onChange={handleChange}/>
-                <button type="submit">Submit Edit</button>
+                <button type="submit" className="waves-effect waves-light btn ">Submit Edit</button>
             </form>
             <form onSubmit={handleDelete}>
-                <button className='danger warning waves-effect waves-light btn' onClick={showDelete}>Delete Announcement</button>
-                {(showButton)? (<><p className='danger warning'><i class="material-icons left">error_outline</i>Are you sure you want to delete?</p><button className='danger warning waves-effect waves-light btn'><i class="material-icons left">delete_forever</i>Delete</button></>) : ('')}
+                <select name="" id="">
+                    <option value="1"></option>
+                    <option value="2"></option>
+                </select>
+                <button className='waves-effect waves-light btn red darken-2' onClick={showDelete}>Delete Announcement</button>
+                {(showButton)? (<><p className='danger warning'><i class="material-icons left">error_outline</i>Are you sure you want to delete?</p><button className='waves-effect waves-light btn red darken-2'><i class="material-icons left">delete_forever</i>Delete</button></>) : ('')}
             </form>
         </div>
     )

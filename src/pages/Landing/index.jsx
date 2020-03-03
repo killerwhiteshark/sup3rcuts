@@ -3,12 +3,13 @@ import {Link} from 'react-router-dom';
 
 const Landing = () => {
 
-    return <div>
-        <h1> This is the Landing page</h1>
-        <h4>
-            <Link to='/login' >Log in</Link>
-        </h4>
-        </div>
+    return( 
+        <div className='s9 m6`'>
+            <h3>This is the Landing page</h3>
+            <h4>
+                <Link to='/login' >Log in</Link>
+            </h4>
+        </div>)
 }
 
 export default Landing

@@ -1,12 +1,21 @@
-body {
+html, body {
   margin: 0;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  min-width: 100%;
 }
-
+main {
+  flex: 1 0 auto;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
 }

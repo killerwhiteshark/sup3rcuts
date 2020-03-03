@@ -31,21 +31,18 @@ const App = () => {
   }, [])
 
   return (
-    <div>
+    <div className='section'>
       <header>
         <div className='red darken-4 brand-logo center'><h1 id='title'>Sup3rcuts!</h1></div>
       </header>
       <div className="row">
-          <div className="col s3">
-            {(isLoggedIn) ? (<Navbar user={currentUser} doSetCurrentUser={doSetCurrentUser} isLoggedIn={isLoggedIn} setCurrentUser={setCurrentUser} />) : ''}
-          </div>
-          <div className="col s9">
-          <Routes user={currentUser} isLoggedIn={isLoggedIn} doSetCurrentUser={doSetCurrentUser} />
-          </div>
+        <div className="col s3 red darken-4" id='side-nav'>
+          {(isLoggedIn) ? (<Navbar user={currentUser} doSetCurrentUser={doSetCurrentUser} isLoggedIn={isLoggedIn} setCurrentUser={setCurrentUser} />) : ''}
         </div>
-      <footer>
-        <p>Sup3rcuts est. 2015-2020</p>
-      </footer>
+        <div className="col s9" style={{ height: "50vw" }}>
+          <Routes user={currentUser} isLoggedIn={isLoggedIn} doSetCurrentUser={doSetCurrentUser} />
+        </div>
+        </div>
     </div>
   );
 }
