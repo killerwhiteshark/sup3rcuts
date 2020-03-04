@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Firebase from '../Firebase';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AnnounceList = () => {
     const [allAnnoun, setAnnoun] = useState([]);
-    
+
     useEffect(() => {
-    Firebase.db
+        Firebase.db
             .collection('announcements')
             .orderBy("timestamp", 'desc')
             .onSnapshot((snapShot) => {
@@ -18,14 +18,17 @@ const AnnounceList = () => {
             });
     }, []);
     return (
-        <div style={{display: 'flex', flexDirection:'column'}} className='container'>
-            <h3>Current Announcements!</h3>
-            <ul>
-                {allAnnoun.map((doc, idx) => {
-                return <li className="card-panel red darken-4" key={doc.id}>By: {doc.userName} - <Link to={`/announce/${doc.id}`}>{doc.title}</Link> - Date {doc.date}</li>
+        <div className='row'>
+            <div className='col s6 center'>
+            <h3>Current Announcements!</h3>                
+            </div>
+            <ul style={{ border: 'none' }} className="collection with-header col s9">
+                {allAnnoun.map((doc) => {
+                    return <li style={{ margin: '5px' }} className="collection-item" key={doc.id}><span className="title"><Link to={`/announce/${doc.id}`}>{doc.title}</Link></span><p>{doc.date}</p></li>
                 })}
             </ul>
-        </div>)
+        </div>
+    )
 }
 
 export default AnnounceList;

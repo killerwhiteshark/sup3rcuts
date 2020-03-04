@@ -4,13 +4,11 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  height: 100%;
+  flex-wrap: wrap;
   flex-direction: column;
   min-width: 100%;
 }
-main {
-  flex: 1 0 auto;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

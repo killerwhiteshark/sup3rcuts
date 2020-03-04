@@ -29,7 +29,7 @@ class Firebase {
 
   doSignInWithEmailAndPassword = async (email, password, userName) => {
     await this.auth.signInWithEmailAndPassword(email, password)
-    await this.doAuthStateChanged()
+    this.doAuthStateChanged()
     return true
   }
 
@@ -86,6 +86,36 @@ class Firebase {
       console.log(error)
       return error
     }
+  }
+  doPostComment = ({comment, postId}) => {
+    try {
+      this.db.collection('comments')
+      .add({
+        timestamp: this.time,
+        uid: this.user.uid,
+        userName: this.user.userName,
+        comment,
+        postId,
+        date: new Date().toDateString(),
+    });
+    } catch (error) {
+      console.log(error, 'Failed to post Comment')
+    }
+  }
+  findUser = async (userNameQuery) => {
+      const docRef = this.db.collection('users').where('userName', '==', userNameQuery)
+      await docRef.get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          if(doc.exists){
+            return true
+          }
+        });
+        return true;
+    })
+    .catch(function(error) {
+        return false
+    });
   }
 }
 

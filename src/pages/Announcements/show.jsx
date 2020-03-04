@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Firebase from '../../components/Firebase'
 
-import AnnounceCommentForm from '../../components/Announcements/AnnounceComments'
+import CommentForm from '../../components/Comments'
+import ShowComments from '../../components/Comments/Show'
 
 const ShowAnnounce = (props) => {
     const [announce, setAnnouce] = useState({});
@@ -10,18 +11,37 @@ const ShowAnnounce = (props) => {
     useEffect(() => {
         Firebase.getAnnouceById(announceId)
             .then(snapShot => setAnnouce(snapShot))
-        }, [props.match.params.id]);
+    }, [props.match.params.id, announceId]);
 
-    return(
+    return (
         <div>
             <h4 className='title'>Announcement</h4>
-            <h2>{announce.userName}</h2>
-            <h3>Title: {announce.title}</h3>
-            <p>Announcement: {announce.content}</p>
-            {(Firebase.auth.currentUser.uid === announce.uid) ? (<><i class="material-icons left">build</i><Link to={`/announce/edit/${announceId}`}>Edit Announcement</Link></>): ('')}
-            <AnnounceCommentForm />
-        </div>
-    )
-}
-
-export default ShowAnnounce;
+            <div className="row">
+                <div className="col">
+                    <div className="card blue-grey darken-1">
+                        <div className="card-content white-text">
+                            <h4 className="card-title">{announce.title}</h4>
+                            <>{announce.userName}</>
+                            <h5>Announcement:</h5>
+                                <div class="card-content">
+                                    <h4>{announce.content}</h4>
+                                </div>
+                                <div>
+                                    {announce.date}
+                                </div>
+                            {(Firebase.auth.currentUser.uid === announce.uid) ? (
+                                <div className="card-action">
+                                <><i className="material-icons left">build</i><Link to={`/announce/edit/${announceId}`}>Edit Announcement</Link></>
+                                </div>
+                            ) : ('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            <CommentForm post={announceId} />
+                            <ShowComments post={announceId} />
+                        </div>
+                        )
+                    }
+                    
+                    export default ShowAnnounce;

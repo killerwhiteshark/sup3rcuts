@@ -8,16 +8,16 @@ const NavBar = ({ isLoggedIn, user, doSetCurrentUser }) => {
     useEffect(()=> {
         Firebase.doAuthStateChanged()
     }, [])
-    const logoutUser = async () => {
+    const logoutUser = () => {
         try {
-            await Firebase.doSignOut()
+            Firebase.doSignOut()
             doSetCurrentUser({})
         } catch (error) {
             console.log(error)
         }
     }
     return (
-        <div>
+        <div id="my-nav">
             <ul id="side-nav">
             <li className='brand-logo'>{user.userName}</li>
                 <NavLink exact to='/main'>Home</NavLink>

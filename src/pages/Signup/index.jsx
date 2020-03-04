@@ -6,15 +6,32 @@ import Firebase from '../../components/Firebase'
 const SignUp = (props) => {
     const [isAuth, setIsAuth] = useState(false);
     const [error, setError] = useState(null);
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({userName:''});
+    const [userNameValid, setUserName] = useState(false)
+
     const handleChange = e => {
         setInputs({
             ...inputs, [e.target.name]: e.target.value,
         })
     }
-
+    const handleFocus = e => {
+        if(e.target.value === ''){
+            return
+        }
+        if(!Firebase.findUser(e.target.value)){
+            setUserName(true)
+        } else {
+            setError({message:'Username already exist, please choose another.'})
+            setTimeout(() => {
+                setInputs({
+                    userName: ''
+                })
+                setError(null);
+            }, 3000)
+        }
+    }
     const handleFormSubmit = async e => {
-        const { email, passwordOne, userName} = inputs;
+        const { email, passwordOne, userName, firstName, lastName} = inputs;
         e.preventDefault()
         try {
             await Firebase.doCreateUserWithEmailAndPassword(email, passwordOne, userName)
@@ -30,7 +47,10 @@ const SignUp = (props) => {
         }
         try {
             await Firebase.db.collection('users').doc(Firebase.auth.currentUser.uid).set({
-                userName: userName
+                userName,
+                firstName,
+                lastName,
+                email
               });
         } catch (error) {
             setError(error)
@@ -40,12 +60,12 @@ const SignUp = (props) => {
         }
     }
 
-    const isInvalid = inputs.passwordOne !== inputs.passwordTwo || inputs.passwordOne === '' || inputs.email === '' || inputs.username === '';
+    const isInvalid = inputs.passwordOne !== inputs.passwordTwo || inputs.passwordOne === '' || inputs.email === '' || inputs.userName === '' || !userNameValid;
 
     if (isAuth) {
         return <Redirect to='/' />
     }
-
+    
     return (
         <div>
             <h1>Sign up</h1>
@@ -54,6 +74,8 @@ const SignUp = (props) => {
                     placeholder='Username'
                     name='userName'
                     onChange={handleChange}
+                    onBlur={handleFocus}
+                    value={inputs.userName}
                 />
                 <input 
                     placeholder="First Name"
@@ -82,13 +104,13 @@ const SignUp = (props) => {
                     name='passwordTwo'
                     onChange={handleChange}
                 />
-                <button disabled={isInvalid} type='submit'>
+                <button disabled={isInvalid} className='btn grey darken-2' type='submit'>
                     Submit
         </button>
             </form>
-            {error && <div style={{ color: 'red' }}>{error.message}</div>}
+            {error && <div style={{ color: 'blue' }}>{error.message}</div>}
             <div>
-            <h4>Already have an account? <Link exact to='/login'>Login</Link></h4>
+            <h4>Already have an account? <Link to='/login'>Login</Link></h4>
             </div>
         </div>
     )

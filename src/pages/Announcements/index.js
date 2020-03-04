@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom'
 import Firebase from '../../components/Firebase'
 import '../../App.css'
 
-const Announcements = ({currentUser}) => {
+const Announcements = ({ currentUser }) => {
     const [input, setInput] = useState({});
     const [madePost, setMadePost] = useState(false)
 
@@ -17,7 +17,7 @@ const Announcements = ({currentUser}) => {
         })
     }
     const handleFormSubmit = e => {
-        const { content, title} = input;
+        const { content, title } = input;
         e.preventDefault()
         try {
             Firebase.db.collection('announcements').add({
@@ -30,32 +30,33 @@ const Announcements = ({currentUser}) => {
             });
             setMadePost(true)
         } catch (error) {
-            console.log('failed to db collection',error);
+            console.log('failed to db collection', error);
             throw Error;
         }
     }
-    if(madePost){
+    if (madePost) {
         return <Redirect to='/main' />
     }
     return (
-    <div>
-        <h1>Make an Announcement</h1>
-        <form onSubmit={handleFormSubmit}>
-            <input 
-            type='text'
-            placeholder="Title"
-            name="title"
-            onChange={handleChange}
-            />
-            <input 
-            type="text" 
-            placeholder="Make Announcment"
-            name='content'
-            onChange={handleChange}
-            />
-            <button type="submit">Submit</button>
-        </form>
-    </div>)
+        <div>
+            <h1>Make an Announcement</h1>
+            <form onSubmit={handleFormSubmit}>
+                <input
+                    type='text'
+                    placeholder="Title"
+                    name="title"
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    placeholder="Make Announcment"
+                    name='content'
+                    onChange={handleChange}
+                />
+                <button className='btn grey darken-2' type="submit">Submit</button>
+            </form>
+        </div>
+    )
 }
 
 export default Announcements;

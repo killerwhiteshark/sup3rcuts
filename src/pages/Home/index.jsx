@@ -1,10 +1,12 @@
 import React from 'react';
 import AnnounceList from '../../components/Announcements'
+import Firebase from '../../components/Firebase'
 
 const Home = () => {
 
     return(
-            <div style={{height: '100vw'}}className="container">
+            <div className="container">
+                <button className='btn' onClick={Firebase.findUser}>Find User</button>
                 <AnnounceList />
             </div>
     )
