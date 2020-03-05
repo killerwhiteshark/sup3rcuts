@@ -9,7 +9,7 @@ import Announcements from '../../pages/Announcements';
 import ShowAnnounce from '../../pages/Announcements/show';
 import Landing from '../../pages/Landing';
 import EditAnnounce from '../../pages/Announcements/EditAnnounce'
-// import PasswordForgetForm from '../../pages/PasswordForget';
+import PasswordForgetForm from '../../pages/PasswordForget';
 
 export default ({ isLoggedIn, user, doSetCurrentUser }) => {
   useEffect(()=> {
@@ -31,6 +31,11 @@ export default ({ isLoggedIn, user, doSetCurrentUser }) => {
     exact
     path='/signup'
     render={() => <Signup doSetCurrentUser={doSetCurrentUser} />}
+  />
+  <Route 
+  exact
+  path='/password-forget'
+  component={PasswordForgetForm}
   />
   {(isLoggedIn) ? (
     <>

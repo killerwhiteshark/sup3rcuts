@@ -23,17 +23,10 @@ class Firebase {
     this.time = app.firestore.FieldValue.serverTimestamp()
     this.user = false;
   }
-  doCreateUserWithEmailAndPassword = async (email, password) => {
-    await this.auth.createUserWithEmailAndPassword(email, password)
-  }
 
   doSignInWithEmailAndPassword = async (email, password, userName) => {
     await this.auth.signInWithEmailAndPassword(email, password)
-    this.doAuthStateChanged()
-    return true
   }
-
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
   doAuthStateChanged = () => {
     this.auth.onAuthStateChanged(user => {
@@ -103,19 +96,22 @@ class Firebase {
     }
   }
   findUser = async (userNameQuery) => {
+    let doesExist = false
       const docRef = this.db.collection('users').where('userName', '==', userNameQuery)
       await docRef.get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           if(doc.exists){
-            return true
+            doesExist = true
+            return
           }
         });
-        return true;
     })
     .catch(function(error) {
+      debugger
         return false
     });
+    return doesExist
   }
 }
 

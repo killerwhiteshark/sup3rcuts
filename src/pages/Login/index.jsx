@@ -21,7 +21,7 @@ const Login = () => {
     try {
       await Firebase.doSignInWithEmailAndPassword(email, password)
         .then(() => { return })
-        .catch((err) => { console.log(err); setNoUser(true); throw Error });
+        .catch((err) => { console.log(err.message); setNoUser(true); throw Error });
       setLog(true);
     } catch (error) {
       setNoUser(true)
@@ -60,7 +60,7 @@ const Login = () => {
             </div>
           </div>
           <div className="row">
-            <button type='submit' className='btn grey darken-2'>Login</button>
+            <button type='submit' className='btn grey darken-2'>Login</button><h5>Forgot Password? <Link to='/password-forget'>Reset Password</Link></h5>
           </div>
         </form>
       </div>
