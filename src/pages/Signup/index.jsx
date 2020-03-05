@@ -37,12 +37,13 @@ const SignUp = (props) => {
         const { email, passwordOne, userName, firstName, lastName } = inputs;
         e.preventDefault()
         Firebase.auth.createUserWithEmailAndPassword(email, passwordOne)
-            .then(async () => {
-                await Firebase.db.collection('users').doc(Firebase.auth.currentUser.uid).set({
+            .then(() => {
+                Firebase.db.collection('users').doc(Firebase.auth.currentUser.uid).set({
                     userName,
                     firstName,
                     lastName,
-                    email
+                    email,
+                    isAdmin: false
                 });
                 props.doSetCurrentUser({
                     email,

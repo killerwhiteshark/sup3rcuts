@@ -26,6 +26,19 @@ class Firebase {
 
   doSignInWithEmailAndPassword = async (email, password, userName) => {
     await this.auth.signInWithEmailAndPassword(email, password)
+    .then(async()=> {
+      await this.db.collection('users').doc(this.auth.currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        const user = querySnapshot.data()
+        this.user = {
+          userName: user.userName,
+          email: user.email,
+          uid: user.uid,
+          logIn: true
+        }
+      })
+    })
   }
 
   doAuthStateChanged = () => {

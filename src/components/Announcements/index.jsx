@@ -9,7 +9,7 @@ const AnnounceList = () => {
         Firebase.db
             .collection('announcements')
             .orderBy("timestamp", 'desc')
-            .onSnapshot((snapShot) => {
+            .onSnapshot(snapShot => {
                 const announce = snapShot.docs.map((ann) => ({
                     id: ann.id,
                     ...ann.data()
