@@ -27,10 +27,32 @@ This application is designed to bring all of the various platforms that spread o
 ## ScreenShots
 ---
 
-![LoginPage]()
+![LoginPage](https://github.com/killerwhiteshark/sup3rcuts/blob/master/public/Screenshots/log-in.jpg?raw=true)
+
+![Landing](https://github.com/killerwhiteshark/sup3rcuts/blob/master/public/Screenshots/landing.jpg?raw=true)
+
+![Make Announcement](https://github.com/killerwhiteshark/sup3rcuts/blob/master/public/Screenshots/make-annoucement.jpg?raw=true)
+
+![All Announcements](https://github.com/killerwhiteshark/sup3rcuts/blob/master/public/Screenshots/all-announcements.jpg?raw=true)
+
+![Show Annoncements and comments](https://github.com/killerwhiteshark/sup3rcuts/blob/master/public/Screenshots/show-announcement.jpg?raw=true)
 
 ---
 ## Ice Box
 ---
 
 For all the things planned in the future, I cant wait to get started!
+
+- Upload graphics/ Announcement Flyer too announcement/event
+
+- Player designed player-cards(Usernames, favorite game, favorite character, ect)
+
+- Forum sction for discussions and share content
+
+- Upload picutres to show off and share how-toos of custom fight stick controllers 
+
+- Share authorized locations of other communities hosting offline gatherings/events
+
+- Playlists of how-to-play and basic game-knowledge/meta
+
+- Add an about page that decribes Sup3rcuts history, founders, builders, and future.
