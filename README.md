@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to Sup3rcuts!
 
-## Available Scripts
+A react based Application that brings fighting game players together that have a passion for a specific Street Fighter game in particular, 3rd Strike!
 
-In the project directory, you can run:
+Our small community cherishes the value of offline play in an online world. When game consoles first offered the chance to play others from around the world, local arcades suffered from loss of cilental and almost all of them were closed. Our goal is to prove to FGC(Fighting Game Community) that offline play still has value and were here to make it big again!
 
-### `yarn start`
+Sup3rcuts has grown from a group of 30 players to a strong community of over 200 hundred street fighters! This Web-based Application will help build our mark that we are still invovled with offline play and the value of learning from face-to-face player interaction that built the arcade empire years before.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Through event-planning and live streams every weekend, we reach out to players through facebook, instagram, twitch, and Discord servers. Reaching as far as the east coast, we have support coming in like never before! 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The weekly events that take place every Saturday night can vary from casual sit in plays, to group fights ranging from 3v3's to as big as 6v6's, 1v1 First to 10's, and full out prize based tournaments! Our hardware is just as impressive as our trained players. We utilize 1ms Asus computer monitors to run StreetFighter 3rd Strike O.E Edtion on the PS# and Xbox360 platforms, as well as 2 fullsize arcade cabinets that run 3rd strike on Superguns!
 
-### `yarn test`
+This application is designed to bring all of the various platforms that spread out the player basis from following us from app too app. Combining the forum ideas and real time player interaction, sharing game tips and tricks, upcoming announcements, commenting on various posts, designing your own player cards(profile cards), staying upto date with current events, being updated with "off-site" group based get-togethers, and much much more too come!
+---
+## Technologies Used
+---
+- React Framework
+- React Router Dom
+- Firebase
+- Firestore
+- Javascript
+- JSX
+- NPM
+- Materalize CSS Framework
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+## ScreenShots
+---
 
-### `yarn build`
+![LoginPage]()
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+## Ice Box
+---
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For all the things planned in the future, I cant wait to get started!

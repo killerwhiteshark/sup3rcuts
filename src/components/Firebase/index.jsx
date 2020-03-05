@@ -108,7 +108,6 @@ class Firebase {
         });
     })
     .catch(function(error) {
-      debugger
         return false
     });
     return doesExist

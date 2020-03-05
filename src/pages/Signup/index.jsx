@@ -20,7 +20,6 @@ const SignUp = (props) => {
             return
         }
         if (await Firebase.findUser(inputs.userName)) {
-            debugger
             setInputs({
                 userName: ''
             })

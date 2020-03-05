@@ -23,7 +23,7 @@ const ShowAnnounce = (props) => {
                             <h4 className="card-title">{announce.title}</h4>
                             <>{announce.userName}</>
                             <h5>Announcement:</h5>
-                                <div class="card-content">
+                                <div className="card-content">
                                     <h4>{announce.content}</h4>
                                 </div>
                                 <div>

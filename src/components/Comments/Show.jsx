@@ -19,13 +19,13 @@ const ShowComments = ({post}) => {
             })
             return setComments(snapShot)
       });
-    },[post])
+    })
     return(
         <div className="row">
         <ul style={{border: 'none'}}className="collection with-header col s9">
         {commentList.map(comment => (
             <li style={{margin: '5px'}}className="collection-item" key={comment.id}>
-                <span class="title">{comment.userName}</span>
+                <span className="title">{comment.userName}</span>
                 <p>Comment: {comment.comment}</p>
             </li>
         ))}

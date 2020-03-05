@@ -29,10 +29,9 @@ const EditAnnounce = (props) => {
         
     const handleDelete = (e) => {
         e.preventDefault()
-        debugger
         Firebase.doDeletePost(announceId)
-        .then(()=>{ debugger; return true})
-        .catch((err)=>{debugger; console.log(err)});
+        .then(()=>{return true})
+        .catch((err)=>{console.log(err)});
         setChange(true)
     }
     const showDelete = (e) => {
