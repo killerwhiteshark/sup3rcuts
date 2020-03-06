@@ -121,7 +121,7 @@ class Firebase {
         });
     })
     .catch(function(error) {
-        return false
+        return
     });
     return doesExist
   }

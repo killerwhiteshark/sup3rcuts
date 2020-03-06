@@ -58,7 +58,7 @@ const EditAnnounce = (props) => {
             </form>
             <form onSubmit={handleDelete}>
                 <button className='waves-effect waves-light btn red darken-2' onClick={showDelete}>Delete Announcement</button>
-                {(showButton)? (<><p className='danger warning'><i class="material-icons left">error_outline</i>Are you sure you want to delete?</p><button className='waves-effect waves-light btn red darken-2'><i class="material-icons left">delete_forever</i>Delete</button></>) : ('')}
+                {(showButton)? (<><p className='danger warning'><i className="material-icons left">error_outline</i>Are you sure you want to delete?</p><button className='waves-effect waves-light btn red darken-2'><i className="material-icons left">delete_forever</i>Delete</button></>) : ('')}
             </form>
         </div>
     )
