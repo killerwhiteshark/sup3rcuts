@@ -6,10 +6,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ErrorBoundry from './components/ErrorBoundary';
 
+import theme from './components/Theme';
+import { ThemeProvider } from '@material-ui/core/styles';
+
 ReactDOM.render(
     <ErrorBoundry>
         <Router>
-            <App /> 
+            <ThemeProvider theme={theme}>
+                <App />
+            </ThemeProvider>
         </Router>
     </ErrorBoundry>,
     document.getElementById('root'));
